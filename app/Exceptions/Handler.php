@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,5 +48,26 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    // we want to make a check if the admin is not authenticated then don’t let them load the dashboard view instead redirect them to the login page.
+    public function unauthenticated($request,AuthenticationException $exception)
+    {
+        if($request->expectsJson()){
+            return response()->json(['message'=>$exception->getMessage()],Response::HTTP_UNAUTHORIZED);
+        }
+
+        $guards = $exception->guards()[0];
+
+        switch($guards){
+            case 'admin':
+                $login = 'admin.login';
+                break;
+            default:
+                $login = 'login';
+                break;
+        }
+
+        return redirect()->guest(route($login));
+
     }
 }
