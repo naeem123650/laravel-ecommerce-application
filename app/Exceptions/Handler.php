@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -56,7 +57,7 @@ class Handler extends ExceptionHandler
             return response()->json(['message'=>$exception->getMessage()],Response::HTTP_UNAUTHORIZED);
         }
 
-        $guards = $exception->guards()[0];
+        $guards = Arr::get($exception->guards(),0);
 
         switch($guards){
             case 'admin':
