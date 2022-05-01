@@ -5,6 +5,20 @@ namespace App\Repositories\Core;
 use App\Contracts\Core\BaseContract;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *  implementation of following methods.
+ *      - create(array $attributes)
+ *      - update (array $attributes)
+ *      - all($columns = array('*'),$orderBy = 'id',$sortBy ='desc')
+ *      - find(int $id)
+ *      - findOrFail(int $id)
+ *      - findBy(array $data)
+ *      - findOneBy(array $data)
+ *      - findOneByOrFail(array $data)
+ *      - delete(int $id)
+ *      - deleteMany(array $ids)
+ */
+
 class BaseRepository implements BaseContract
 {
     protected $model;
