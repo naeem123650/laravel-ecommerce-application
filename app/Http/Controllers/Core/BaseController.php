@@ -67,11 +67,15 @@ class BaseController extends Controller
      *  informations are filled in same page.
      * @return void
      */
-    protected function responseRedirectBack($message,$type='info',$error = false,$withOldInputWhenError = false)
+    protected function responseRedirectBack($message, $type = 'info', $error = false, $withOldInputWhenError = false)
     {
-        $this->setFlashMessage($message,$type);
-        $this->showFlashMessages();
+        try {
+            $this->setFlashMessages($message, $type);
+            $this->showFlashMessages();
 
-        return redirect()->back();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }

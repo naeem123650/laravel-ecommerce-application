@@ -23,20 +23,31 @@ class LoginController extends Controller
 
     public function login(AdminLoginRequest $request)
     {
-        if(Auth::guard('admin')->attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ],$request->get('rememberme'))){
-            return redirect()->route('admin.dashboard');
-        }
 
-        return back()->withInput($request->only('email','rememberme'));
+        try{
+            if(Auth::guard('admin')->attempt([
+                'email' => $request->email,
+                'password' => $request->password,
+            ],$request->get('rememberme'))){
+                return redirect()->route('admin.dashboard');
+            }
+
+            return back()->withInput($request->only('email','rememberme'));
+
+        } catch (\Exception $e) {
+            return $this->responseRedirectBack($e->getMessage(),"error");
+        }
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();
-        $request->session()->invalidate();
-        return redirect()->route('admin.login');
+        try {
+            Auth::guard('admin')->logout();
+            $request->session()->invalidate();
+            return redirect()->route('admin.login');
+        } catch (\Exception $e) {
+            return $this->responseRedirectBack($e->getMessage(),"error");
+        }
+
     }
 }

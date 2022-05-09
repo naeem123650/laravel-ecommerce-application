@@ -2,32 +2,33 @@
 
 namespace Database\Seeders;
 
-use App\Models\Settind\Setting;
+use App\Models\Admin\Setting\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SettingSeeder extends Seeder
 {
     protected $settings = [
         [
             'key'                       =>  'site_name',
-            'value'                     =>  'E-Commerce Application',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'site_title',
-            'value'                     =>  'E-Commerce',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'default_email_address',
-            'value'                     =>  'admin@admin.com',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'currency_code',
-            'value'                     =>  'GBP',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'currency_symbol',
-            'value'                     =>  '£',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'site_logo',
@@ -97,6 +98,10 @@ class SettingSeeder extends Seeder
             'key'                       =>  'paypal_secret_id',
             'value'                     =>  '',
         ],
+        [
+            'key'                       =>  'notification_style',
+            'value'                     =>  '',
+        ],
     ];
 
     /**
@@ -106,6 +111,8 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('settings')->truncate();
+
         foreach ($this->settings as $index => $setting) {
             $result =  Setting::create($setting);
 
