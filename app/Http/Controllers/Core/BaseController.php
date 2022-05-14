@@ -49,7 +49,7 @@ class BaseController extends Controller
     protected function responseRedirect($route,$type = 'info',$message,$error = false,$withOldInputWhenError = false)
     {
         // For Set and display flash message on action.
-        $this->setFlashMessage($message,$type);
+        $this->setFlashMessages($message,$type);
         $this->showFlashMessages();
 
         // For eg. While Adding Record is there any information is wrong then after page load filled information will filled with filled information.

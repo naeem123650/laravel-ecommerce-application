@@ -28,6 +28,17 @@ class BaseRepository implements BaseContract
         $this->model = $model;
     }
 
+    // public function onCheckChange($fieldToChange,$valueToChange,$targetField = "id",$targetValue)
+    // {
+    //     // print_r($fieldToChange); //  status
+    //     // print_r($valueToChange); // 0
+    //     // print_r($targetField); // id
+    //     $value = $targetValue; // 12
+    //     // die;
+
+    //     return $this->model->find($value)->toSql();
+    // }
+
     public function create(array $attributes)
     {
         return $this->model->create($attributes);
@@ -38,9 +49,9 @@ class BaseRepository implements BaseContract
         return $this->model->find($id)->update($attributes);
     }
 
-    public function all($columns = array('*'),$orderBy = 'id',$sortBy = 'desc')
+    public function all($columns = array('*'),string $orderBy = 'id',string $sortBy = 'desc')
     {
-        return $this->model->orderBy($orderBy,$orderBy)->get($columns);
+        return $this->model->orderBy($orderBy,$sortBy)->get($columns);
     }
 
     public function find(int $id)

@@ -1,3 +1,23 @@
+<?php
+    $menus = [
+        [
+            "href" => "admin.index",
+            "icon" => "dashboard",
+            "displayText" => "Dashboard"
+        ],
+        [
+            "href" => "admin.settings",
+            "icon" => "cogs",
+            "displayText" => "Settings"
+        ],
+        [
+            "href" => "admin.categories.index",
+            "icon" => "tags",
+            "displayText" => "Category"
+        ],
+    ];
+?>
+
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
     <div class="app-sidebar__user">
@@ -15,6 +35,21 @@
         <li>
             <a class="app-menu__item {{ Route::currentRouteName() == 'admin.settings' ? 'active' : '' }}" href="{{ route('admin.settings') }}"><i class="app-menu__icon fa fa-cogs"></i>
                 <span class="app-menu__label">Settings</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}" href="{{ route('admin.categories.index') }}"><i class="app-menu__icon fa fa-tags"></i>
+                <span class="app-menu__label">Categories</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.attributes.index' ? 'active' : '' }}" href="{{ route('admin.attributes.index') }}"><i class="app-menu__icon fa fa-bars"></i>
+                <span class="app-menu__label">Attributes</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}"><i class="app-menu__icon fa fa-briefcase"></i>
+                <span class="app-menu__label">Brands</span>
             </a>
         </li>
     </ul>
