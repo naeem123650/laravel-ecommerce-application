@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\Attribute\AttributeValueController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\Product\ProductAttributeController;
+use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Product\ProductImageController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +60,40 @@ Route::group(['prefix' => 'admin'],function(){
             Route::get('/{id}/edit',[BrandController::class,'edit'])->name('admin.brands.edit');
             Route::put('/update',[BrandController::class,'update'])->name('admin.brands.update');
             Route::get('/{id}/delete',[BrandController::class,'delete'])->name('admin.brands.delete');
+        });
+
+        Route::group(["prefix" => "products"],function(){
+            Route::get('/',[ProductController::class,'index'])->name("admin.products.index");
+            Route::get('/create',[ProductController::class,'create'])->name("admin.products.create");
+            Route::post('/store',[ProductController::class,'store'])->name("admin.products.store");
+            Route::get('/{id}/edit',[ProductController::class,'edit'])->name("admin.products.edit");
+            Route::put('/update',[ProductController::class,'update'])->name("admin.products.update");
+            Route::get('/{id}/delete',[ProductController::class,'delete'])->name("admin.products.delete");
+
+            Route::post("images/upload",[ProductImageController::class,'upload'])->name("admin.products.images.upload");
+            Route::get('/images/{id}/delete',[ProductImageController::class,'delete'])->name("admin.products.images.delete");
+
+            // Load attributes on the page load from attributes table
+            //eg. size and color.
+            Route::get('attributes/load',[ProductAttributeController::class,'loadAttributes']);
+
+            // Load product attributes on the page load
+            //Route::post('attributes', 'Admin\ProductAttributeController@productAttributes');
+            Route::post("attributes",[ProductAttributeController::class,'productAttributes']);
+
+
+            // Load option values for a attribute
+            //Route::post('attributes/values', 'Admin\ProductAttributeController@loadValues');
+            Route::post('attributes/values',[ProductAttributeController::class,'loadValues']);
+
+            // Add product attribute to the current product
+            //Route::post('attributes/add', 'Admin\ProductAttributeController@addAttribute');
+            Route::post("attributes/add",[ProductAttributeController::class,'addAttribute']);
+
+            // Delete product attribute from the current product
+            //Route::post('attributes/delete', 'Admin\ProductAttributeController@deleteAttribute');
+            Route::post("attributes/delete",[ProductAttributeController::class,'deleteAttribute']);
+
         });
     });
 });

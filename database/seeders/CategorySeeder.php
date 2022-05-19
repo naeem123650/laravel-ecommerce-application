@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->truncate();
+        // DB::table('categories')->truncate();
 
         Category::create([
             "name" => "Root",
@@ -25,6 +25,6 @@ class CategorySeeder extends Seeder
             "menu" => 0,
         ]);
 
-        Category::factory()->times(10)->create();
+        // Category::factory()->times(10)->create();
     }
 }

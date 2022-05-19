@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin\Attributes;
 
+use App\Models\Admin\Product\ProductAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,5 +23,10 @@ class AttributeValue extends Model
     public function attribute()
     {
         return $this->belongsTo(Attribute::class,"id");
+    }
+
+    public function productAttributes()
+    {
+        return $this->belongsToMany(ProductAttribute::class);
     }
 }

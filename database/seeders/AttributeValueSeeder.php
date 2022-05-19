@@ -21,7 +21,7 @@ class AttributeValueSeeder extends Seeder
     {
        foreach ($this->sizes as  $size) {
             AttributeValue::create([
-                "attribute_id" => 1,
+                "attribute_id" => 2,
                 "value" => $size,
                 "price" => null,
             ]);
@@ -29,7 +29,7 @@ class AttributeValueSeeder extends Seeder
 
        foreach ($this->colors as  $color) {
             AttributeValue::create([
-                "attribute_id" => 2,
+                "attribute_id" => 3,
                 "value" => $color,
                 "price" => null,
             ]);

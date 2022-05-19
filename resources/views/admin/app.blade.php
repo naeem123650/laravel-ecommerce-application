@@ -13,7 +13,7 @@
 <body class="app sidebar-mini rtl">
     @include('admin.partials.header')
     @include('admin.partials.sidebar')
-    <main class="app-content">
+    <main class="app-content" id="app">
         @yield('content')
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

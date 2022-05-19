@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin\Category;
 
+use App\Models\Admin\Product\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -37,5 +38,10 @@ class Category extends Model
     {
         $this->attributes['name'] = $name;
         $this->attributes['slug'] = Str::slug($name);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class,"product_categories","product_id","category_id");
     }
 }

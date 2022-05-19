@@ -5,8 +5,8 @@
 @endsection
 
 @push('designs')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="{{ asset('backend/css/switchery/css/switchery.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/toastr/css/toastr.min.css') }}">
 @endpush
 
 @section('content')
@@ -87,8 +87,8 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('backend/js/switchery/js/switchery.min.js') }}"></script>
+    <script src="{{ asset('backend/js/toastr/js/toastr.min.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>

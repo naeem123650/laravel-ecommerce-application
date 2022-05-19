@@ -13,12 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attribute_values', function (Blueprint $table) {
+        Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("attribute_id");
-            $table->foreign("attribute_id")->references("id")->on("attributes")->onDelete("cascade")->onUpdate("cascade");
+
+            $table->foreign('attribute_id')->references("id")->on("attributes")->onDelete("cascade")->onUpdate("cascade");
+
             $table->string("value");
-            $table->decimal("price",6,2)->nullable();
+            $table->string("quantity");
+            $table->decimal("price");
+            $table->unsignedBigInteger("product_id");
+
+            $table->foreign('product_id')->references("id")->on("products")->onDelete("cascade")->onUpdate("cascade");
+
             $table->timestamps();
         });
     }
@@ -30,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attribute_values');
+        Schema::dropIfExists('product_attributes');
     }
 };
